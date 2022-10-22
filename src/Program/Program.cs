@@ -1,6 +1,6 @@
-﻿using System;
-using CompAndDel.Pipes;
+﻿using CompAndDel.Pipes;
 using CompAndDel.Filters;
+using Library;
 
 namespace CompAndDel
 {
@@ -19,7 +19,7 @@ namespace CompAndDel
             IFilter filterGreyScale= new FilterGreyscale();
             IPipe pipeSerial1= new PipeSerial(filterGreyScale, pipeSerial2);
             
-            IPicture filteredPicture1 = pipeSerial1.Send(picture);
+            IPicture filteredPicture1 = pipeSerial1.Send(picture1);
 
             PictureProvider provider2 = new PictureProvider();
             provider2.SavePicture(filteredPicture1, @"Ejercicio1.jpg");
@@ -27,10 +27,16 @@ namespace CompAndDel
 
         // -------------------------------------------Ejercicio 2----------------------------------------------------------------
 
-            FilterPersistance filterPersistance= new FilterPersistance();
-            filterPersistance.Filter(filteredPicture1, "EstadoActual.jpg");
+            /* FilterPersistance filterPersistance= new FilterPersistance();
+            filterPersistance.Path= "EstadoActual.jpg";
+            filterPersistance.Filter(filteredPicture1); 
+            
+            Implementado dentro del método "Send" de PipeSerial
+            */
 
         // -------------------------------------------Ejercicio 3----------------------------------------------------------------
+
+            TwitterPrinter.TweetImage(@"Ejercicio1.jpg");
         }
     }
 }
