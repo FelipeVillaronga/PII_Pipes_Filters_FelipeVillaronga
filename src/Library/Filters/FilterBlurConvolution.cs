@@ -49,6 +49,8 @@ namespace CompAndDel.Filters
                     result.SetColor(x, y, GetFilteredColor(sample));
                 }
             }
+            IFilter twitter= new TwitterFilter(@"Nueva imagen.jpg");
+            twitter.Filter(result);
 
             return result;
         }
@@ -97,5 +99,6 @@ namespace CompAndDel.Filters
 
             return sample;
         }
+    
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CompAndDel;
+﻿using TwitterUCU;
+using CompAndDel.Filters;
 
 namespace CompAndDel.Pipes
 {
@@ -41,11 +38,12 @@ namespace CompAndDel.Pipes
         /// <param name="picture">Imagen a la cual se debe aplicar el filtro</param>
         public IPicture Send(IPicture picture)
         {
-            Filters.FilterPersistance filter= new Filters.FilterPersistance();
-            filter.Path= "EstadoActual.jpg";
+            FilterPersistance filter= new FilterPersistance();
+            filter.Path= @"EstadoActual.jpg";
             filter.Filter(picture);
-            picture = this.filtro.Filter(picture);
-            
+
+
+            picture = this.filtro.Filter(picture);     
             return this.nextPipe.Send(picture);
         }
     }

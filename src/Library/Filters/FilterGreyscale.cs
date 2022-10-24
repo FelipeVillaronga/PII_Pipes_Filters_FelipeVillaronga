@@ -31,7 +31,9 @@ namespace CompAndDel.Filters
                     result.SetColor(x, y, colorGris);
                 }
             }
-
+            
+            IFilter twitter= new TwitterFilter(@"Nueva imagen.jpg");
+            twitter.Filter(result);
             return result;
         }
     }

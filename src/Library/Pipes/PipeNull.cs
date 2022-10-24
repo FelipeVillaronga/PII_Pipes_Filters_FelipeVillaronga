@@ -17,6 +17,10 @@ namespace CompAndDel.Pipes
         /// <returns>La misma imagen</returns>
         public IPicture Send(IPicture picture)
         {
+            Filters.FilterPersistance filter= new Filters.FilterPersistance();
+            filter.Path= "EstadoActual.jpg";
+            filter.Filter(picture);
+
             this.image = picture;
             return this.image;
         }

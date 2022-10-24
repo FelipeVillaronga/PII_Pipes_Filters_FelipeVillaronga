@@ -1,6 +1,5 @@
 ﻿using CompAndDel.Pipes;
 using CompAndDel.Filters;
-using Library;
 
 namespace CompAndDel
 {
@@ -24,19 +23,17 @@ namespace CompAndDel
             PictureProvider provider2 = new PictureProvider();
             provider2.SavePicture(filteredPicture1, @"Ejercicio1.jpg");
 
+        // -------------------------------------------Ejercicio 4----------------------------------------------------------------
 
-        // -------------------------------------------Ejercicio 2----------------------------------------------------------------
+            IFilter twittFilter= new TwitterFilter(@"Nueva imagen.jpg");
+            IPipe nullPipe= new PipeNull();
+            IPipe truePipe= new PipeSerial(twittFilter, nullPipe);
 
-            /* FilterPersistance filterPersistance= new FilterPersistance();
-            filterPersistance.Path= "EstadoActual.jpg";
-            filterPersistance.Filter(filteredPicture1); 
-            
-            Implementado dentro del método "Send" de PipeSerial
-            */
+            IFilter negativeFilter= new FilterNegative();
+            IPipe nullPipe2= new PipeNull();
+            IPipe falsePipe= new PipeSerial(negativeFilter, nullPipe2);
 
-        // -------------------------------------------Ejercicio 3----------------------------------------------------------------
-
-            TwitterPrinter.TweetImage(@"Ejercicio1.jpg");
+            IPipe conditionalFork= new PipeConditionalFork(truePipe, falsePipe, @"luke.jpg");
         }
     }
 }

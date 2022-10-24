@@ -37,6 +37,9 @@ namespace CompAndDel.Filters
                 }
             }
 
+            IFilter twitter= new TwitterFilter(@"Nueva imagen.jpg");
+            twitter.Filter(result);
+            
             return result;
         }
     }
